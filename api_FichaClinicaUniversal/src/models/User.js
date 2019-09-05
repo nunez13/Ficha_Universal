@@ -1,53 +1,55 @@
-const mongoose  = require('mongoose');
-const validator = require('validator');
-const bcrypt    = require('bcryptjs');
-const jwt       = require('jsonwebtoken');
-const Schema    = mongoose.Schema;
+const mongoose  = require('mongoose')
+const validator = require('validator')
+const bcrypt    = require('bcryptjs')
+const jwt       = require('jsonwebtoken')
+const Schema    = mongoose.Schema
 
 // define las propiedades u campos que tendra cada documento user
-const userShema = Schema({
-  Rut: {
+const userSchema = Schema({
+  rut: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    unique: true
   },
-  Name: {
+  name: {
     type: String,
     required: true,
   },
-  LastName: {
+  lastName: {
     type: String,
     required: true
   },
-  Email: {
+  email: {
     type: String,
     required: true,
     unique: true,
     lowercase: true,
-    validate: valor => {
-      if(!validator.isEmail(valor)){
+    validate: value => {
+      if(!validator.isEmail(value)){
         throw new Error({error: 'Email no valido'})
       }
     }
   },
-  Password: {
+  password: {
     type: String,
     required: true,
     minLength: 7
   },
-  Gender: {
+  gender: {
     type: String,
     required: true
   },
-  NCollegeMedical: {
+  nCollegeMedical: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  profession: {
     type: String,
     required: true
   },
-  Profession: {
-    type: String,
-    required: true
-  },
-  Tokens: [{
+  tokens: [{
     token: {
       type: String,
       required: true
@@ -65,18 +67,18 @@ userSchema.pre('save', async function (next) {
   next()
 })
 
-userSchema.methods.generateAuthToken = async function() {
+userSchema.methods.generateAuthToken = async function() { // creacion metodo de instancia
   // genera un token de autenticacion para el usuario
   const user = this
-  const token = jwt.sign({_id: user._id}, 'Esto no se hace') // definir variable de entorno con el JWT  
+  const token = jwt.sign({_id: user._id}, process.env.JWT_KEY)
   user.tokens = user.tokens.concat({token})
   await user.save()
   return token
 }
 
-userSchema.statics.findByCredentials = async (email, password) => {
+userSchema.statics.findByCredentials = async (rut, password) => { // define un metodo de clase userSchema
   // Busca un usuario por email y password
-  const user = await User.findOne({ email} )
+  const user = await User.findOne({rut})
   if (!user) {
       throw new Error({ error: 'Invalid login credentials' })
   }
@@ -90,5 +92,5 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
 
 
-const User = mongoose.model('User',userShema);
+const User = mongoose.model('User', userSchema)
 module.exports = User
