@@ -1,10 +1,13 @@
 const express = require('express')
 const User = require('../models/User')
 const auth = require('../middleware/auth')
+const cors = require('cors')
 
 const router = express.Router()
+let = corsOptions = {origin: 'http://localhost:3000'}
+router.options('/', cors())
 
-router.post('/users', async (req, res) => {
+router.post('/users', cors(), async (req, res) => {
     // crea un nuevo usuario
     try {
         const user = new User(req.body)
@@ -17,7 +20,7 @@ router.post('/users', async (req, res) => {
     }
 })
 
-router.post('/users/login', async(req, res) => {
+router.post('/users/login', cors(), async(req, res) => {
     // Inicio de sesion de un usuario ya creado
     try {
         const { rut, password } = req.body
@@ -35,14 +38,14 @@ router.post('/users/login', async(req, res) => {
 })
 
 //perfil de usuario "datos del usuario que inicia sesion"
-router.get('/users/me', auth, async (req, res) => { 
+router.get('/users/me', cors(), auth, async (req, res) => {
     res.send(req.user)
 })
 
 
-//cerrar sesion 
+//cerrar sesion
 
-router.post('/users/me/logout',auth, async (req, res) => {
+router.post('/users/me/logout', cors(), auth, async (req, res) => {
     try {
         req.user.tokens = req.user.tokens.filter((token) =>{
             return token.token != req.token
@@ -56,7 +59,7 @@ router.post('/users/me/logout',auth, async (req, res) => {
 
 })
 
-router.post('/users/me/logoutall', auth, async(req, res) => {
+router.post('/users/me/logoutall', cors(),auth, async(req, res) => {
     // cierra sesion de todos los dispositivos
     try {
         req.user.tokens.splice(0, req.user.tokens.length)

@@ -1,13 +1,10 @@
 require('./db/db')
 const express = require('express')
+const cors = require('cors')
 const userRouter = require('./routers/user')
 const port = process.env.PORT
 const app = express()
-
-//cargar archivos de rutas
-
-
-//middlewares
+app.use(cors())
 app.use(express.json())
 app.use(userRouter)
 
@@ -23,6 +20,7 @@ app.listen(port, () => {
 // })
 
 //CORS
+
 
 //exportar modulo app.js
 module.exports = app
