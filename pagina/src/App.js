@@ -16,10 +16,10 @@ class App extends Component {
           <li>
           <Link to="/CrearUsuario">Crear Usuario</Link>
           </li>
-        </ul>
+        </ul> 
 
-        <Route path="/Login" component="Login"></Route>
-        <Route path="/CrearUsuario" component="Registro"></Route>
+        <Route path="/Login" component={Login}></Route>
+                <Route path="/CrearUsuario" component={Registro}></Route>
       </Router>
       
     </div>
