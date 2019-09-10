@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
+import FormLogin from './FormLogin'
 
 export default class Login extends Component{
 	render(){
-	return{
+	return(
 	<div>
-
+		<FormLogin/>
 	</div>
-	}
+	)
 	}
 
 }

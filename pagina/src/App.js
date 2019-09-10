@@ -18,8 +18,8 @@ class App extends Component {
           </li>
         </ul>
 
-        <Route path="/Login" component="Login"></Route>
-        <Route path="/CrearUsuario" component="Registro"></Route>
+        <Route path="/Login" component={Login}></Route>
+        <Route path="/CrearUsuario" component={Registro}></Route>
       </Router>
       
     </div>
