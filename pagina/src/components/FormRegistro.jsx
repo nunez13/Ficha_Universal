@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody,MDBIcon } from 'mdbreact';
 
 export default class FormRegistro extends Component {
 
@@ -33,30 +33,40 @@ export default class FormRegistro extends Component {
     this.createUser()
     
     return(
-      <form onSubmit={this.sendData}>
-        <label >Rut</label>
-        <input type="text" name="rut" onChange={this.handleChange}/><br/>
-        <label htmlFor="">Nombre</label>
-        <input type="text" name="name" onChange={this.handleChange}/><br/>
-        <label>Apellido</label>
-        <input type="text" name="lastName" onChange={this.handleChange}/><br/>
-        <label htmlFor="" >Email</label>
-        <input type="text" name="email" onChange={this.handleChange}/><br/>
-        <label htmlFor=""> Password</label>
-        <input type="password" placeholder="*****" name="password" onChange={this.handleChange}/><br/>
-        <label htmlFor="">NºColegioMedico</label>
-        <input type="text" name="nCollegeMedical" onChange={this.handleChange}/><br/>
-        <label htmlFor="">Gender</label>
-        <select name="gender" id="">
-          <option value="">Seleccione Una Opcion</option>
-          <option value="Masculino" onChange={this.handleChange}>Masculino </option>
-          <option value="Femenino"  onChange={this.handleChange}>Femenino</option>
-        </select><br/>
-        <label htmlFor="">Profession</label>
-        <input type="text" name="profession" onChange={this.handleChange}/><br/>
-        <input type="submit" value="Enviar"/>
-      </form>
-      
+      <div className="bg">
+        <center>
+          <MDBContainer>
+            <MDBRow>
+              <MDBCol md="12">
+                <MDBCard className='card-image' style={{backgroundImage:'url(http://www.wallpaperk.com/wallpapers/envelope-minimal-blue-7837.jpg)', width: '28rem'}}>
+                <div className='text-white rgba-stylish-strong py-5 px-5 z-depth-4'>
+                    <MDBCardBody>
+                        <form onSubmit={this.sendData}>
+                        <div className='text-center'>
+                          <h3 className='white-text mb-5 mt-4 font-weight-bold'>
+                            <strong>SIGN</strong>
+                            <strong className='green-text font-weight-bold'>UP</strong>
+                          </h3>
+                        </div>
+                          <div className="grey-text">
+                            <MDBInput label="Nombre completo" group type="text" validate error="wrong" success="right"/>
+                            <MDBInput label="Rut" group type="text" validate error="wrong" success="right" lenght="9"/>
+                            <MDBInput label="Email" group type="email" validate error="wrong" success="right"/>
+                            <MDBInput label="Confirma tu email" group type="text" validate error="wrong" success="right"/>
+                            <MDBInput label="Contraseña" group type="password" validate/>
+                          </div>
+                          <div className="text-center py-4 mt-3">
+                            <MDBBtn color="cyan" type="submit"> Register </MDBBtn>
+                          </div>
+                        </form>
+                    </MDBCardBody>
+                  </div>
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer> 
+        </center>
+      </div> 
     )
   }
 }

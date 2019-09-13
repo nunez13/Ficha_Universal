@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
+import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
 import axios from 'axios'
 import Registro from './Registro'
 import { BrowserRouter as Router, Route, Link}  from 'react-router-dom'
@@ -32,8 +32,8 @@ export default class FormLogin extends Component {
                 <div className='text-white rgba-stylish-strong py-5 px-5 z-depth-4'>
                   <div className='text-center'>
                     <h3 className='white-text mb-5 mt-4 font-weight-bold'>
-                      <strong>SIGN</strong>
-                      <strong className='green-text font-weight-bold'> UP</strong>
+                      <strong>LOG</strong>
+                      <strong className='green-text font-weight-bold'>IN</strong>
                     </h3>
                   </div>
                   <MDBInput
@@ -50,21 +50,6 @@ export default class FormLogin extends Component {
                     validate
                     labelClass='white-text'
                   />
-                  <div className='md-form pb-3'>
-                    <MDBInput
-                      label={
-                        <>
-                          Acepta los&nbsp;
-                          <a href='#!' className='green-text font-weight-bold'>
-                            Terminos y condiciones 
-                          </a>
-                        </>
-                      }
-                      type='checkbox'
-                      id='checkbox1'
-                      labelClass='white-text'
-                    />
-                  </div>
                   <MDBRow className='d-flex align-items-center mb-4'>
                     <div className='text-center mb-3 col-md-12'>
                       <MDBBtn
@@ -73,14 +58,14 @@ export default class FormLogin extends Component {
                         type='button'
                         className='btn-block z-depth-1'
                       >
-                        Sign in
+                        LOGIN
                       </MDBBtn>
                     </div>
                   </MDBRow>
                   <MDBCol md='12'>
                     <p className='font-small white-text d-flex justify-content-end'>
                       Have an account?
-                      <Link to="/CrearUsuario" className='green-text ml-1 font-weight-bold'>Log In</Link>
+                      <Link to="/CrearUsuario" className='green-text ml-1 font-weight-bold'>SIGN IN</Link>
                       <Route path="/CrearUsuario" component={Registro}></Route>
 
                     </p>
