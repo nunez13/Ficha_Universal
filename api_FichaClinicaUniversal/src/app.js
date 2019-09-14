@@ -13,14 +13,6 @@ app.listen(port, () => {
     console.log(`Server Corriendo en el puerto ${port}`)
 })
 
-// app.get('/test', (req, res) =>{
-//   res.status(200).send({
-//     message: 'hola mundo test api'
-//   })''
-// })
-
-//CORS
-
 
 //exportar modulo app.js
 module.exports = app
