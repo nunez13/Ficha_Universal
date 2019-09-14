@@ -27,7 +27,9 @@ class App extends Component {
   render(){
     const bgPink = {backgroundColor: 'aqua-gradient', transparency: '30%'}
   return (
+
     <div className="App">
+      
       <Router>
         <header>
           <MDBNavbar className="nav" dark expand="md" scrolling fixed="top">
@@ -44,6 +46,7 @@ class App extends Component {
         <Route path="/Login" component={Login}></Route>
         <Route path="/CrearUsuario" component={Registro}></Route>
       </Router>
+      
   </div>
   );
   }

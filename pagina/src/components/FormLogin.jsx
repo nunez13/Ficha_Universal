@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
+import {  MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
 import axios from 'axios'
 import Registro from './Registro'
 import { BrowserRouter as Router, Route, Link}  from 'react-router-dom'
@@ -23,12 +23,12 @@ export default class FormLogin extends Component {
   render(){
     this.logIn()
     return(
-      <div className="bg">
+    <div className="bg">
       <center>
         <MDBContainer>
           <MDBRow style={{top:"50%"}}>
             <MDBCol md='12'>
-              <MDBCard className='card-image' style={{backgroundImage:'url(http://www.wallpaperk.com/wallpapers/envelope-minimal-blue-7837.jpg)', width: '28rem'}}>
+              <MDBCard className='card-image' className="cont" style={{backgroundImage:'url(http://www.wallpaperk.com/wallpapers/envelope-minimal-blue-7837.jpg)', width: '28rem'}}>
                 <div className='text-white rgba-stylish-strong py-5 px-5 z-depth-4'>
                   <div className='text-center'>
                     <h3 className='white-text mb-5 mt-4 font-weight-bold'>
@@ -76,7 +76,7 @@ export default class FormLogin extends Component {
           </MDBRow>
         </MDBContainer>
       </center>
-    </div>
+  </div>
     )
   }
 }

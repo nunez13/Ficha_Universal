@@ -33,12 +33,12 @@ export default class FormRegistro extends Component {
     this.createUser()
     
 return(
-      <div className="bg">
+  <div className="bg">
       <center>
         <MDBContainer>
           <MDBRow style={{top:"50%"}}>
             <MDBCol md='12'>
-              <MDBCard className='card-image' style={{backgroundImage:'url(http://www.wallpaperk.com/wallpapers/envelope-minimal-blue-7837.jpg)', width: '28rem'}}>
+              <MDBCard className='card-image' style={{backgroundImage:'url(http://www.wallpaperk.com/wallpapers/envelope-minimal-blue-7837.jpg)', width: '28rem'}}className="cont">
                 <div className='text-white rgba-stylish-strong py-5 px-5 z-depth-4'>
                   <div className='text-center'>
                     <h3 className='white-text mb-5 mt-4 font-weight-bold'>
@@ -140,7 +140,7 @@ return(
           </MDBRow>
         </MDBContainer>
       </center>
-    </div>
+  </div>
     )
   }
 }

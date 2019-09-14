@@ -3,7 +3,7 @@ height: 100%;
 }
 .bg {
 	background-image: url("https://www.mactualidad.com/wp-content/uploads/2014/07/smooth-ice.jpg");
-	height: 100vh;
+	height: 150vh;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -12,6 +12,10 @@ height: 100%;
 .nav{
 	background-color: cadetblue;
 	opacity: 0.5;
+}
+
+.cont{
+	margin-top: 7%
 
 
 }
