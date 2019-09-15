@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {  MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
 import axios from 'axios'
 import Registro from './Registro'
-import { BrowserRouter as Router, Route, Link}  from 'react-router-dom'
+import {Route, Link}  from 'react-router-dom'
 
 export default class FormLogin extends Component {
   handleChange = ({target}) => {
@@ -21,7 +21,6 @@ export default class FormLogin extends Component {
 	  	}
   	}
   render(){
-    this.logIn()
     return(
     <div className="bg">
       <center>
@@ -42,6 +41,7 @@ export default class FormLogin extends Component {
                     type='text'
                     validate
                     labelClass='white-text'
+                    name="rut"
                   />
                   <MDBInput
                     label='Contraseña'
@@ -49,6 +49,7 @@ export default class FormLogin extends Component {
                     type='password'
                     validate
                     labelClass='white-text'
+                    name="password"
                   />
                   <MDBRow className='d-flex align-items-center mb-4'>
                     <div className='text-center mb-3 col-md-12'>
@@ -64,8 +65,8 @@ export default class FormLogin extends Component {
                   </MDBRow>
                   <MDBCol md='12'>
                     <p className='font-small white-text d-flex justify-content-end'>
-                      Have an account?
-                      <Link to="/CrearUsuario" className='green-text ml-1 font-weight-bold'>SIGN IN</Link>
+                      No tienes una cuenta?
+                      <Link to="/CrearUsuario" className='green-text ml-1 font-weight-bold'>Registrate</Link>
                       <Route path="/CrearUsuario" component={Registro}></Route>
 
                     </p>

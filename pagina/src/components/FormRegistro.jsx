@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput} from 'mdbreact';
-import Select from 'react-select'
 
 const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 
@@ -15,7 +14,7 @@ const formValid = ({formErrors, ...rest}) =>{
 
   //Validar si es formulario es completado
   Object.values(rest).forEach(val => {
-    val == null && (valid = false)
+    val === null && (valid = false)
   });
   
   return valid;
@@ -26,19 +25,23 @@ export default class FormRegistro extends Component {
   constructor(props){
     super(props);
     this.state = {
-      nombre:null,
-      apellido:null,
-      password:null,
-      email:null,
-      ncolegio:null,
-      profesion:null,
+      rut: null,
+      name: null,
+      lastName: null,
+      password: null,
+      email: null,
+      gender: 'Default',
+      nCollegeMedical: null,
+      profession: null,
       formErrors:{
-        nombre:"",
-        apellido:"",
-        password:"",
-        email:"",
-        ncolegio:"",
-        profesion:""
+        rut: '',
+        name: '',
+        lastName: '',
+        password: '',
+        email: '',
+        gender: '',
+        nCollegeMedical: '',
+        profession: '',
       }
     };
   }
@@ -47,16 +50,20 @@ export default class FormRegistro extends Component {
     const {name, value} = target
     this.setState({[name]: value})
     let formErrors = this.state.formErrors;
-
-    switch (name){
-      case 'nombre':
-        formErrors.nombre =
-        value.length == 0 ? 'Debe ingresar su Nombre' : "";
+  switch (name){
+      case 'rut':
+        formErrors.rut = 
+        value.length === 0 ? 'Debe Ingresar su Rut' : "";
         break;
 
-      case 'apellido':
-        formErrors.apellido =
-        value.length == 0 ? 'Debe ingresar su Apellido' : "";
+      case 'name':
+        formErrors.name =
+        value.length === 0 ? 'Debe ingresar su Nombre' : "";
+        break;
+
+      case 'lastName':
+        formErrors.lastName =
+        value.length === 0 ? 'Debe ingresar su Apellido' : "";
         break;
 
       case 'password':
@@ -71,42 +78,37 @@ export default class FormRegistro extends Component {
         : "Ingrese un Email Valido";
         break;
 
-      case 'ncolegio':
-        formErrors.ncolegio = 
-        value.length == 0 ? 'Debe ingresar Numero de Colegio Medico' : "";
+      case 'nCollegeMedical':
+        formErrors.nCollegeMedical = 
+        value.length === 0 ? 'Debe ingresar Numero de Colegio Medico' : "";
         break;
 
-      case 'profesion':
-        formErrors.profesion = 
-        value.length == 0 ? 'Debe ingresar su Profesion' : "";
+      case 'profession':
+        formErrors.profession = 
+        value.length === 0 ? 'Debe ingresar su Profesion' : "";
         break;
     }
-
     //this.setState({formErrors, [name]: value },() => console.log(this.state));
 
   };
 
-  createUser = async () => {
+  handleSubmit = () => {
+    const {formErrors, ...rest} = this.state
+    const result = formValid({formErrors, ...rest})
+    if(result === false) return alert('Complete el Formulario')
+    this.createUser(rest)
+
+  }
+  createUser = async (info) => {
     try {
-      const res = await axios.post('http://localhost:5000/users', {
-        rut: "12929282-2",
-        name: "Zero",
-        lastName: "Uno",
-        email: "exp12@gmail.com",
-        password: "pass12345",
-        gender: "Masculino",
-        nCollegeMedical: "123456",
-        profession: "Medico"
-        
-      })
-      console.log(res.data);
+      const res = await axios.post('http://localhost:5000/users',info)
+      localStorage.setItem('Token',res.data.token)
     } catch(err){
-      console.log("el error es:", err);
+      console.log("el error es:", err)
     }
   }
 
   render(){
-    this.createUser()
     const { formErrors } = this.state;
     
 return(
@@ -126,40 +128,44 @@ return(
                   <MDBInput
                     label='Rut'
                     group
-                    type='number'
+                    type='text'
                     validate
                     labelClass='white-text'
                     onChange={this.handleChange}
                     id="rut"
                     className='white-text mb-5 mt-4 font-weight-bold'
+                    name="rut"
                   />
+                  {formErrors.rut.length > 0 && (
+                  <span className ="errorMessage">{formErrors.rut}</span>
+                  )}
                   <MDBInput
                     label='Nombre'
                     group
                     type='text'
-                    name='nombre'
+                    name='name'
                     validate
                     labelClass='white-text'
                     onChange={this.handleChange}
                     id="name"
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
-                  {formErrors.nombre.length > 0 && (
-                  <span className ="errorMessage">{formErrors.nombre}</span>
+                  {formErrors.name.length > 0 && (
+                  <span className ="errorMessage">{formErrors.name}</span>
                   )}
                   <MDBInput
                     label='Apellido'
                     group
                     type='text'
-                    name='apellido'
+                    name='lastName'
                     validate
                     labelClass='white-text'
                     onChange={this.handleChange}
                     id="lastName"
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
-                  {formErrors.apellido.length > 0 && (
-                  <span className ="errorMessage">{formErrors.apellido}</span>
+                  {formErrors.lastName.length > 0 && (
+                  <span className ="errorMessage">{formErrors.lastName}</span>
                   )}
                   <MDBInput
                     label='Email'
@@ -193,15 +199,15 @@ return(
                     label='NºColegioMedico'
                     group
                     type='number'
-                    name='ncolegio'
+                    name='nCollegeMedical'
                     validate
                     labelClass='white-text'
                     onChange={this.handleChange}
                     id="nCollegeMedical"
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
-                  {formErrors.ncolegio.length > 0 && (
-                  <span className ="errorMessage">{formErrors.ncolegio}</span>
+                  {formErrors.nCollegeMedical.length > 0 && (
+                  <span className ="errorMessage">{formErrors.nCollegeMedical}</span>
                   )}
                   <select className="browser-default custom-select" id="gender">
                     <option>Selecciona tu genero</option>
@@ -212,15 +218,15 @@ return(
                     label='Profesion'
                     group
                     type='text'
-                    name='profesion'
+                    name='profession'
                     validate
                     labelClass='white-text'
                     onChange={this.handleChange}
                     id="profession"
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
-                  {formErrors.profesion.length > 0 && (
-                  <span className ="errorMessage">{formErrors.profesion}</span>
+                  {formErrors.profession.length > 0 && (
+                  <span className ="errorMessage">{formErrors.profession}</span>
                   )}
 
                   <MDBRow className='d-flex align-items-center mb-4'>
@@ -230,6 +236,7 @@ return(
                         rounded
                         type='button'
                         className='btn-block z-depth-1'
+                        onClick={this.handleSubmit}
                       >
                         Registrar
                       </MDBBtn>
