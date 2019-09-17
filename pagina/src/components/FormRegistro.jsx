@@ -137,7 +137,7 @@ return(
                     name="rut"
                   />
                   {formErrors.rut.length > 0 && (
-                  <span className ="errorMessage">{formErrors.rut}</span>
+                  <span className ="errorMessage" style={{ color:"red"}}>{formErrors.rut}</span>
                   )}
                   <MDBInput
                     label='Nombre'
@@ -151,7 +151,7 @@ return(
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   {formErrors.name.length > 0 && (
-                  <span className ="errorMessage">{formErrors.name}</span>
+                  <span className ="errorMessage" style={{ color:"red"}}>{formErrors.name}</span>
                   )}
                   <MDBInput
                     label='Apellido'
@@ -165,7 +165,7 @@ return(
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   {formErrors.lastName.length > 0 && (
-                  <span className ="errorMessage">{formErrors.lastName}</span>
+                  <span className ="errorMessage" style={{ color:"red"}}>{formErrors.lastName}</span>
                   )}
                   <MDBInput
                     label='Email'
@@ -179,7 +179,7 @@ return(
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   {formErrors.email.length > 0 && (
-                  <span className ="errorMessage">{formErrors.email}</span>
+                  <span className ="errorMessage" style={{ color:"red"}}>{formErrors.email}</span>
                   )}
                   <MDBInput
                     label='Contraseña'
@@ -193,7 +193,7 @@ return(
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   {formErrors.password.length > 0 && (
-                  <span className ="errorMessage">{formErrors.password}</span>
+                  <span className ="errorMessage"style={{ color:"red"}}>{formErrors.password}</span>
                   )}
                   <MDBInput
                     label='NºColegioMedico'
@@ -207,7 +207,7 @@ return(
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   {formErrors.nCollegeMedical.length > 0 && (
-                  <span className ="errorMessage">{formErrors.nCollegeMedical}</span>
+                  <span className ="errorMessage" style={{ color:"red"}}>{formErrors.nCollegeMedical}</span>
                   )}
                   <select className="browser-default custom-select" id="gender">
                     <option>Selecciona tu genero</option>
@@ -226,7 +226,7 @@ return(
                     className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   {formErrors.profession.length > 0 && (
-                  <span className ="errorMessage">{formErrors.profession}</span>
+                  <span className ="errorMessage" style={{ color:"red"}}>{formErrors.profession}</span>
                   )}
 
                   <MDBRow className='d-flex align-items-center mb-4'>

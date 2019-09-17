@@ -4,11 +4,33 @@ import axios from 'axios'
 import Registro from './Registro'
 import {Route, Link}  from 'react-router-dom'
 
+const initialState = {
+    rut:"",
+    password:"",
+    rutError:"",
+    passwordError:"",
+    msgError:"",
+}
+
 export default class FormLogin extends Component {
+
+  state = initialState; 
+
+  handleSubmit = event =>{
+
+    event.preventDefault();
+    const isValid = this.validate();
+    if(isValid){
+      console.log(this.state);
+      this.setState(initialState);
+    }    
+
+  }
+
   handleChange = ({target}) => {
   	const {name, value} = target 
-  	this.setState({[name]: value})
-  	console.log(this.state)  
+  	this.setState({[name]: value})    
+  	//console.log(this.state)  
 	}
 
 	logIn = async () => {
@@ -20,6 +42,34 @@ export default class FormLogin extends Component {
 	    	console.log('el error es:', err)
 	  	}
   	}
+
+  validate = () => {
+    let rutError="";
+    let passwordError="";
+    let msgError="";
+
+    if(!this.state.rut && !this.state.password ){
+      msgError = "Complete Todos los campos";
+    }
+    
+    if (msgError){
+      this.setState({msgError});
+      return false;
+    }
+
+    if (!this.state.rut) {
+      rutError="No puede dejar Rut en blanco";
+    }
+
+    if (rutError) {
+      this.setState({rutError});
+      return false;
+    }
+
+
+    return true;
+  };
+
   render(){
     return(
     <div className="bg">
@@ -35,6 +85,9 @@ export default class FormLogin extends Component {
                       <strong className='green-text font-weight-bold'>IN</strong>
                     </h3>
                   </div>
+                  <div style={{ color:"red"}}>
+                    {this.state.msgError}
+                  </div>
                   <MDBInput
                     label='Rut'
                     group
@@ -42,7 +95,12 @@ export default class FormLogin extends Component {
                     validate
                     labelClass='white-text'
                     name="rut"
+                    onChange={this.handleChange}
                   />
+                  <div style={{ color:"red"}}>
+                    {this.state.rutError}
+                  </div>
+
                   <MDBInput
                     label='Contraseña'
                     group
@@ -50,14 +108,19 @@ export default class FormLogin extends Component {
                     validate
                     labelClass='white-text'
                     name="password"
+                    //onChange={this.handleChange}
                   />
+                  <div style={{ color:"red"}}>
+                    {this.state.passwordError}
+                  </div>
                   <MDBRow className='d-flex align-items-center mb-4'>
                     <div className='text-center mb-3 col-md-12'>
                       <MDBBtn
                         color='success'
                         rounded
                         type='button'
-                        className='btn-block z-depth-1'
+                        className='btn-block z-depth-1'  
+                        onClick = {this.handleSubmit}                      
                       >
                         LOGIN
                       </MDBBtn>
