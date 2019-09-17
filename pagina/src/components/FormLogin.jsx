@@ -102,6 +102,7 @@ export default class FormLogin extends Component {
                     labelClass='white-text'
                     name="rut"
                     onChange={this.handleChange}
+                    className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   <div style={{ color:"red"}}>
                     {this.state.rutError}
@@ -115,6 +116,7 @@ export default class FormLogin extends Component {
                     labelClass='white-text'
                     name="password"
                     onChange={this.handleChange}
+                    className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   <div style={{ color:"red"}}>
                     {this.state.passwordError}
