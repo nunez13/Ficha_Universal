@@ -20,21 +20,21 @@ export default class FormLogin extends Component {
 
     event.preventDefault();
     const isValid = this.validate();
-    if(isValid){
-      console.log(this.state);
-      this.setState(initialState);
-    }    
+    if(isValid === false) return alert("Debe proporcionar la informacion");
+    const {rut,password} = this.state;
+    const info = {rut: rut,password: password}
+    this.logIn(info)
 
   }
 
   handleChange = ({target}) => {
   	const {name, value} = target 
   	this.setState({[name]: value})    
-  	//console.log(this.state)  
+  	console.log(this.state)  
 	}
 
-	logIn = async () => {
-  		const info = {rut: '12929282-2', password: 'pass12345'}
+	logIn = async (info) => {
+  		//const info = {rut: '12929282-2', password: 'pass12345'}
   		try{
     		const res = await axios.post('http://localhost:5000/users/login', info)
     		console.log(res.data)      
@@ -66,7 +66,13 @@ export default class FormLogin extends Component {
       return false;
     }
 
-
+    if (!this.state.password) {
+      passwordError = "Debe Introducir una Contraseña"
+    }
+    if (passwordError) {
+      this.setState({passwordError})
+      return false
+    }
     return true;
   };
 
@@ -108,7 +114,7 @@ export default class FormLogin extends Component {
                     validate
                     labelClass='white-text'
                     name="password"
-                    //onChange={this.handleChange}
+                    onChange={this.handleChange}
                   />
                   <div style={{ color:"red"}}>
                     {this.state.passwordError}
