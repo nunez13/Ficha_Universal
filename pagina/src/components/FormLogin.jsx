@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {  MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
 import axios from 'axios'
 import Registro from './Registro'
-import {Route, Link}  from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Link}  from 'react-router-dom'
 
 const initialState = {
     rut:"",
@@ -10,6 +10,7 @@ const initialState = {
     rutError:"",
     passwordError:"",
     msgError:"",
+    isLoggedIn: false
 }
 
 export default class FormLogin extends Component {
@@ -28,20 +29,22 @@ export default class FormLogin extends Component {
   }
 
   handleChange = ({target}) => {
-  	const {name, value} = target 
-  	this.setState({[name]: value})    
-  	console.log(this.state)  
-	}
+    const {name, value} = target 
+    this.setState({[name]: value}) 
+  }
 
-	logIn = async (info) => {
-  		//const info = {rut: '12929282-2', password: 'pass12345'}
-  		try{
-    		const res = await axios.post('http://localhost:5000/users/login', info)
-    		console.log(res.data)      
-		}catch(err){
-	    	console.log('el error es:', err)
-	  	}
-  	}
+  logIn = async (info) => {
+      //const info = {rut: '12929282-2', password: 'pass12345'}
+      try{
+        const res = await axios.post('http://localhost:5000/users/login', info)
+        const {isLoggedIn} = this.props
+        isLoggedIn()
+
+        console.log(res.data)      
+    }catch(err){
+        console.log('el error es:', err)
+      }
+    }
 
   validate = () => {
     let rutError="";
@@ -77,6 +80,7 @@ export default class FormLogin extends Component {
   };
 
   render(){
+    
     return(
     <div className="bg">
       <center>
@@ -102,7 +106,6 @@ export default class FormLogin extends Component {
                     labelClass='white-text'
                     name="rut"
                     onChange={this.handleChange}
-                    className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   <div style={{ color:"red"}}>
                     {this.state.rutError}
@@ -116,7 +119,6 @@ export default class FormLogin extends Component {
                     labelClass='white-text'
                     name="password"
                     onChange={this.handleChange}
-                    className='white-text mb-5 mt-4 font-weight-bold'
                   />
                   <div style={{ color:"red"}}>
                     {this.state.passwordError}
