@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
-export default class Dashboard extends Component {
+export default class dashboard extends Component {
   constructor(props){
     super(props)
   }

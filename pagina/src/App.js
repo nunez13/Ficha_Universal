@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route}  from 'react-router-dom'
 import Login from './components/Login'
 import Registro from './components/Registro'
 import Navbar from './components/Navbar';
-import Dashboard from './components/Dashboard'
+import dashboard from './components/dashboard'
 
 class App extends Component {
 
@@ -16,7 +16,7 @@ class App extends Component {
         <Navbar/>
         <Route path="/Login" component={Login}></Route>
         <Route path="/CrearUsuario" component={Registro}></Route>
-        <Route path="/Dashboard" component={Dashboard}></Route>
+        <Route path="/dashboard" component={dashboard}></Route>
 
       </Router>
       
