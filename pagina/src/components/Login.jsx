@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import FormLogin from './FormLogin'
-import Dashboard from './Dashboard'
+import dashboard from './dashboard'
 import { BrowserRouter as Router, Route, Redirect}  from 'react-router-dom'
 
 export default class Login extends Component{
@@ -21,7 +21,7 @@ export default class Login extends Component{
  redirectDashboard = () => {
 		const {isLoggedIn} = this.state
 		if(isLoggedIn){
-			return <Redirect from="/Login" to="/Dashboard"/>
+			return <Redirect from="/Login" to="/dashboard"/>
 	}else{
 		return <h3>Usuario no Logeado</h3>
 	}
@@ -35,7 +35,7 @@ export default class Login extends Component{
 	<div>
 		<Route  render={(props) => (
          isLoggedIn
-          ? <Dashboard {...props} />
+          ? <dashboard {...props} />
           : <FormLogin isLoggedIn={this.LoggedIn}/>
        )} />
 			 
