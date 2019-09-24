@@ -10,7 +10,6 @@ const initialState = {
     rutError:"",
     passwordError:"",
     msgError:"",
-    isLoggedIn: false
 }
 
 export default class FormLogin extends Component {
@@ -37,10 +36,9 @@ export default class FormLogin extends Component {
       //const info = {rut: '12929282-2', password: 'pass12345'}
       try{
         const res = await axios.post('http://localhost:5000/users/login', info)
-        const {isLoggedIn} = this.props
+        const {isLoggedIn,dataUser} = this.props
         isLoggedIn()
-
-        console.log(res.data)      
+        dataUser(res.data)     
     }catch(err){
         console.log('el error es:', err)
       }

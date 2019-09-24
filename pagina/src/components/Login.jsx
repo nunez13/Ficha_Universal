@@ -8,35 +8,28 @@ export default class Login extends Component{
 		super(props)
 		this.state = {
 			isLoggedIn: false,
-			dataUser: null
+			dataUser: {}
 		}
-		this.LoggedIn = this.LoggedIn.bind(this);
+		this.LoggedIn = this.LoggedIn.bind(this)
+		this.handleUserData = this.handleUserData.bind(this)
 	}
 
 	LoggedIn() {
 		this.setState({ isLoggedIn: true })
 
-}
-
- redirectDashboard = () => {
-		const {isLoggedIn} = this.state
-		if(isLoggedIn){
-			return <Redirect from="/Login" to="/Dashboard"/>
-	}else{
-		return <h3>Usuario no Logeado</h3>
+}	
+	handleUserData(data){
+		this.setState({ dataUser: data })
 	}
-
- }
-	
 	render(){
 		console.log(this.state.isLoggedIn)
-		const {isLoggedIn} = this.state
+		const {isLoggedIn,dataUser} = this.state
 	return(
 	<div>
 		<Route  render={(props) => (
          isLoggedIn
-          ? <Dashboard {...props} />
-          : <FormLogin isLoggedIn={this.LoggedIn}/>
+          ? <Dashboard dataUser={dataUser}/>
+          : <FormLogin isLoggedIn={this.LoggedIn} dataUser={this.handleUserData}/>
        )} />
 			 
 	</div>

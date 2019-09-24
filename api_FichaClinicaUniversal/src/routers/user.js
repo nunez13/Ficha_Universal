@@ -51,10 +51,9 @@ router.post('/users/me/logout', cors(corsOptions), auth, async (req, res) => {
             return token.token != req.token
         })
         await req.user.save()
-        res.send()
+        res.send({message: 'Sign out session'})
     } catch (error) {
         res.status(500).send(error)
-        console.log(error)
     }
 
 })
