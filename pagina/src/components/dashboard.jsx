@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import { MDBContainer, MDBRow, MDBCol,MDBCard, MDBCardBody,MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBFooter } from "mdbreact";
-
+import Login from './Login'
 export default class Dashboard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      lastToken: ''
+      lastToken: '',
+      isLogged: true
 
     }
   }
@@ -16,6 +17,7 @@ export default class Dashboard extends Component {
     try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}` 
     const res = await axios.post('http://localhost:5000/users/me/logout')
+    this.setState({isLogged: false})
     console.log(res.data)
     }catch(err){
       console.log(err)
@@ -33,6 +35,7 @@ componentDidUpdate(){
   
 }
  render(){
+  if(this.state.isLogged){
     return(
       <div className="bg">
         {this.props.infouser}
@@ -105,7 +108,12 @@ componentDidUpdate(){
       </MDBContainer>
       <button onClick={this.logout}>sign out</button>
       </div>
-    )
+    )}
+    else{
+      return(
+      <Login/>
+      )
+    }
   }
 
 }
