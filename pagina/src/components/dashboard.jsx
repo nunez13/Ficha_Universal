@@ -50,7 +50,7 @@ componentDidUpdate(){
             <MDBRow >             
               <MDBCol md="5">
                 <MDBCard className="cardd" >
-                  <MDBCardBody>
+                  <MDBCardBody className = "scrollbar scrollbar-primary">
                     <MDBCardTitle>Ficha Medica</MDBCardTitle>
                     <MDBRow>
                       <MDBCol md="4">
@@ -70,7 +70,7 @@ componentDidUpdate(){
 
               <MDBCol md="4">
                 <MDBCard className="cardd">
-                  <MDBCardBody>
+                  <MDBCardBody className = "scrollbar scrollbar-primary">
                     <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
                     
                   </MDBCardBody>
@@ -79,10 +79,36 @@ componentDidUpdate(){
 
               <MDBCol md="3">
                 <MDBCard className="cardd">
-                  <MDBCardBody>
+                  <MDBCardBody className = "scrollbar scrollbar-primary">
                     <MDBCardTitle>Ficha Medica</MDBCardTitle>
                     <div className="active-pink-3 active-pink-4 mb-4">
                       <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
+							<br></br>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
                     </div>
                   </MDBCardBody>
                 </MDBCard>
