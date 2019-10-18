@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import { MDBContainer, MDBRow, MDBCol,MDBCard, MDBCardBody,MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBFooter } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol,MDBCard, MDBCardBody,MDBBtn,MDBCardTitle,MDBIcon,} from "mdbreact";
 import Login from './Login'
+
 export default class Dashboard extends Component {
   constructor(props){
     super(props)
@@ -37,76 +38,84 @@ componentDidUpdate(){
  render(){
   if(this.state.isLogged){
     return(
-      <div className="bg">
+      <div className="bg" style={{height:'100vh'}}>
         {this.props.infouser}
-        <MDBContainer >
-            <MDBRow > 
-              <MDBCol size="8" className="cont">
-              <MDBCarousel
-                activeItem={1}
-                length={3}
-                showControls={false}
-                showIndicators={false}
-                className="z-depth-1"
-                slide
-              >
-                <MDBCarouselInner>
-                  <MDBCarouselItem itemId="1">
-                    <MDBView>
-                      <img
-                        className="d-block w-100"
-                        src="https://mdbootstrap.com/img/Photos/Slides/img%20(35).jpg"
-                        alt="First slide"
-                      />
-                    </MDBView>
-                  </MDBCarouselItem>
-                  <MDBCarouselItem itemId="2">
-                    <MDBView>
-                      <img
-                        className="d-block w-100"
-                        src="https://mdbootstrap.com/img/Photos/Slides/img%20(33).jpg"
-                        alt="Second slide"
-                      />
-                    </MDBView>
-                  </MDBCarouselItem>
-                  <MDBCarouselItem itemId="3">
-                    <MDBView>
-                      <img
-                        className="d-block w-100"
-                        src="https://mdbootstrap.com/img/Photos/Slides/img%20(31).jpg"
-                        alt="Third slide"
-                      />
-                    </MDBView>
-                  </MDBCarouselItem>
-                </MDBCarouselInner>
-              </MDBCarousel>
+        <br/>
+        <br/>
+        <MDBContainer fluid >
+          <div style={{textAlign:"right"}}>
+            <MDBBtn onClick={this.logout}>Cerrar Sesion</MDBBtn>
+          </div>
+        
+            <MDBRow >             
+              <MDBCol md="5">
+                <MDBCard className="cardd" >
+                  <MDBCardBody className = "scrollbar scrollbar-primary">
+                    <MDBCardTitle>Ficha Medica</MDBCardTitle>
+                    <MDBRow>
+                      <MDBCol md="4">
+                        <MDBBtn rounded size="lg" color="success" title="Guardar"><MDBIcon icon="save" className="iconFM"></MDBIcon></MDBBtn>
+                      </MDBCol>
+                      <MDBCol md="4">
+                        <MDBBtn rounded size="lg" color="danger" title="Eliminar"><MDBIcon icon="trash" className="iconFM"></MDBIcon></MDBBtn>
+                      </MDBCol>
+                      <MDBCol md="4">
+                        <MDBBtn rounded size="lg" color="warning" title="Cancelar"><MDBIcon icon="times" className="iconFM"></MDBIcon></MDBBtn>
+                      </MDBCol>
+                    </MDBRow>
+                    
+                  </MDBCardBody>
+                </MDBCard>
               </MDBCol>
-              <MDBCol size="4" className="cont">
-                  <MDBCard>
-                    <MDBCardBody>ARQUETIPO !</MDBCardBody>
-                  </MDBCard><br></br>
-                  <MDBCard>
-                    <MDBCardBody>ARQUETIPO !</MDBCardBody>
-                  </MDBCard><br></br>
-                  <MDBCard>
-                    <MDBCardBody>ARQUETIPO !</MDBCardBody>
-                  </MDBCard><br></br>
-                  <MDBCard>
-                    <MDBCardBody>ARQUETIPO !</MDBCardBody>
-                  </MDBCard><br></br>
-                  <MDBCard>
-                    <MDBCardBody>ARQUETIPO !</MDBCardBody>
-                  </MDBCard><br></br>
-                  <MDBCard>
-                    <MDBCardBody>ARQUETIPO !</MDBCardBody>
-                  </MDBCard><br></br>
-                  <MDBCard>
-                    <MDBCardBody>ARQUETIPO !</MDBCardBody>
-                  </MDBCard><br></br>
+
+              <MDBCol md="4">
+                <MDBCard className="cardd">
+                  <MDBCardBody className = "scrollbar scrollbar-primary">
+                    <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                    
+                  </MDBCardBody>
+                </MDBCard>
               </MDBCol>
+
+              <MDBCol md="3">
+                <MDBCard className="cardd">
+                  <MDBCardBody className = "scrollbar scrollbar-primary">
+                    <MDBCardTitle>Ficha Medica</MDBCardTitle>
+                    <div className="active-pink-3 active-pink-4 mb-4">
+                      <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
+							<br></br>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                            <MDBCard className="cardd2">
+                              <MDBCardBody>
+                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
+                              </MDBCardBody>
+                            </MDBCard>
+                    </div>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+
             </MDBRow>
-      </MDBContainer>
-      <button onClick={this.logout}>sign out</button>
+        </MDBContainer>      
       </div>
     )}
     else{
