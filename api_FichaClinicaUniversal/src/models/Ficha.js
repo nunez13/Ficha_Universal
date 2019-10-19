@@ -7,8 +7,9 @@ const Schema    = mongoose.Schema
 const fichaSchema = Schema({
     identificationNumber: {
         type: Number,
-        required: true,
-        unique: true
+        //required: true,
+        unique: true,
+        default: 197955384
     },
     date: {
         type: Date,
@@ -16,15 +17,19 @@ const fichaSchema = Schema({
     },
     name: {
         type: String,
-        required: true
+        default: 'Diego'
+        //required: true
     },
     lastName: {
         type: String,
-        required: true
+        default: 'Pincheira'
+
+        //required: true
     },
     email: {
         type: String,
-        required: true,
+        //required: true
+        default: 'diego@hotmail.com',
         unique: true,
         lowercase: true,
         validate: value => {
@@ -36,58 +41,74 @@ const fichaSchema = Schema({
       userDetails: {
           address: {
               type: String,
-              required: true
+              default: 'Calle Falsa 123'
+              //required: true
           },
           birthData: {
-              type: Date,
-              required: true
+              // cambiar a tipo Date
+              type: String,
+              default: '11/05/1998'
+
+              //required: true
           },
           gender: {
               type: String,
-              required: true
+              default: 'Masculino'
+
+              //required: true
           },
           deathData: {
-              type: Date,
-              required: true
+              // cambiar a tipo Date
+              type: String,
+              default: 'N/A'
+              //required: true
               
           },
           bloodType: {
               type: String,
-              required: true
+              default: 'no se xD'
+              //required: true
               
           },
           heigth: {
               type: Number,
-              required: true 
+              default: 88
+              //required: true 
           },
           weigth: {
               type: Number,
-              required: true
+              default: 168
+              //required: true
           },
           legalRepresentative: {
               type: String,
-              required: true
+              default: 'mi padre'
+              //required: true
           },
           occupation: {
               type: String,
-              required: true
+              default: 'Ruby on Rails Developer'
+              //required: true
           },
-          allergies: [{
-              allergie: {
-                  type: String
-              }
-          }],
+          allergies: {
+              type: Array,
+              default: ['Polen', 'Polvo']
+
+          },
           maritalStatus: {
               type: String,
-              required: true
+              default: 'Soltero'
+              //required: true
           },
           city: {
               type: String,
-              required: true 
+              default: 'Victoria'
+              //required: true 
           },
           region: {
               type: String,
-              required: true
+              default: 'IX Region de la araucania'
+              //required: true
           }
 
       },
@@ -95,64 +116,61 @@ const fichaSchema = Schema({
       healtService: {
           healtInsurance: {
               type: String,
-              required: true 
+              default: 'Sin Seguro'
+              //required: true 
           },
           healthCareAgreement: {
               type: String,
-              required: true
+              default: 'F'
+              //required: true
           },
           medicalForeCast: {
               type: String,
-              required: true
+              default: 'Fonasa'
+
+              //required: true
           }
       },
-      visits: [{visit: {
-          _idVisit: {
-              type: Number
-          },
-          doctorName:{
-              type: String
-          },
-          date: {
-              type: Date,
-              default: Date.now
-          },
-          cause: {
-              type: String
-          },
-          observations: {
-              type: String
-          },
-          treatment: {
-              medicines: [
-                  {medicine: {
-                      nameMedicine: {
-                          type: String
-                      },
-                      quantity: {
-                          type: String
-                      },
-                      dateInit: {
-                          type: Date,
-                          default: Date.now
-                      },
-                      dateExpiry: {
-                          type: Date
-                      }
-                  }}
-              ]
-          }
+      // Quitar default y luego dejarlo en blanco
+      visits: { type: Array, default: [
+          {
+            _idVisit: 9999999,
+            doctorName: 'Dostor x',
+            date: new Date(),
+            cause: 'Gripe',
+            observations: 'Vino por Gripe ya esta mejor',
+            treatment: {
+                medicines: { type: Array, 
+                    medicine: [
+                        {
+                        nameMedicine: 'Paracetamol',
+                        quantity: '2 cada 8 horas por 7 dias',
+                        dateInit: new Date(),
+                        dateExpiry: '++/**/----',
 
-      }}
-      ]
+                        }
+                    ]
+                }
+            }
+        }]
+
+      }
 })
 
-fichaSchema.statics.findFichaByRut = async (rut) => {
-    const ficha = await Ficha.find({rut})
+fichaSchema.statics.findFichaByIdentificationNumber = async (identificationNumber) => {
+    const ficha = await Ficha.findOne({identificationNumber})
     if(!ficha){
         throw new Error({error: 'error ficha is not instanciated'})
     }
     return ficha
+}
+
+
+fichaSchema.statics.updateFicha = async (identificationNumber, newValues) => {
+    const ficha =  await Ficha.findOneAndUpdate({identificationNumber},{$set: newValues})
+    await ficha.save()
+    return ficha
+
 }
 
 

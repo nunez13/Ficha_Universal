@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+mongoose.set('useFindAndModify', false);
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost:27017/FichaMedica',{ useNewUrlParser: true, useCreateIndex: true}) // port por defecto de mongo db
         .then(()=> {
