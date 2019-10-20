@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import { MDBContainer, MDBRow, MDBCol,MDBCard, MDBCardBody,MDBBtn,MDBCardTitle,MDBIcon,} from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol,MDBCard, MDBCardBody,MDBBtn,MDBCardTitle} from "mdbreact";
 import Login from './Login'
+import Arqueotipo from './Arqueotipo';
+import FichaMedica from './FichaMedica'
+import DetallesFicha from './DetallesFicha';
 
 export default class Dashboard extends Component {
   constructor(props){
@@ -47,35 +50,10 @@ componentDidUpdate(){
             <MDBBtn onClick={this.logout}>Cerrar Sesion</MDBBtn>
           </div>
         
-            <MDBRow >             
-              <MDBCol md="5">
-                <MDBCard className="cardd" >
-                  <MDBCardBody className = "scrollbar scrollbar-primary">
-                    <MDBCardTitle>Ficha Medica</MDBCardTitle>
-                    <MDBRow>
-                      <MDBCol md="4">
-                        <MDBBtn rounded size="lg" color="success" title="Guardar"><MDBIcon icon="save" className="iconFM"></MDBIcon></MDBBtn>
-                      </MDBCol>
-                      <MDBCol md="4">
-                        <MDBBtn rounded size="lg" color="danger" title="Eliminar"><MDBIcon icon="trash" className="iconFM"></MDBIcon></MDBBtn>
-                      </MDBCol>
-                      <MDBCol md="4">
-                        <MDBBtn rounded size="lg" color="warning" title="Cancelar"><MDBIcon icon="times" className="iconFM"></MDBIcon></MDBBtn>
-                      </MDBCol>
-                    </MDBRow>
-                    
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
+            <MDBRow >           
+              <FichaMedica/>
 
-              <MDBCol md="4">
-                <MDBCard className="cardd">
-                  <MDBCardBody className = "scrollbar scrollbar-primary">
-                    <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
-                    
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
+              <DetallesFicha/>
 
               <MDBCol md="3">
                 <MDBCard className="cardd">
@@ -83,32 +61,13 @@ componentDidUpdate(){
                     <MDBCardTitle>Ficha Medica</MDBCardTitle>
                     <div className="active-pink-3 active-pink-4 mb-4">
                       <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
+                      <div style={{textAlign:"right"}}>
+                      <MDBBtn >Buscar Ficha</MDBBtn>
+          </div>
+        
 							<br></br>
-                            <MDBCard className="cardd2">
-                              <MDBCardBody>
-                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
-                              </MDBCardBody>
-                            </MDBCard>
-                            <MDBCard className="cardd2">
-                              <MDBCardBody>
-                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
-                              </MDBCardBody>
-                            </MDBCard>
-                            <MDBCard className="cardd2">
-                              <MDBCardBody>
-                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
-                              </MDBCardBody>
-                            </MDBCard>
-                            <MDBCard className="cardd2">
-                              <MDBCardBody>
-                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
-                              </MDBCardBody>
-                            </MDBCard>
-                            <MDBCard className="cardd2">
-                              <MDBCardBody>
-                                <MDBCardTitle>Detalles Ficha Usuario</MDBCardTitle>
-                              </MDBCardBody>
-                            </MDBCard>
+                            <Arqueotipo name={"Arqueotipo Visita"} arqueotipo={"1"}/>
+                            <Arqueotipo name={"Arqueotipo Servicios Medicos"} arqueotipo={"2"}/>
                     </div>
                   </MDBCardBody>
                 </MDBCard>

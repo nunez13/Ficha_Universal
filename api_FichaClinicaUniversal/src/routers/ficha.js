@@ -7,7 +7,7 @@ const router = express.Router()
 let corsOptions = {origin: 'http://localhost:3000'}
 router.options('/', cors(corsOptions))
 
-router.post('/new_ficha',cors(corsOptions), auth, async (req, res, next) => {
+router.post('/new_ficha', cors(corsOptions), auth, async (req, res, next) => {
     // intenta crear una nueva instacia de ficha
     try{
         const ficha = new Ficha()

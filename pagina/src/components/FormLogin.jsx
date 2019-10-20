@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {  MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
 import axios from 'axios'
 import Registro from './Registro'
-import { BrowserRouter as Router, Route, Redirect, Link}  from 'react-router-dom'
+import { Route, Link}  from 'react-router-dom'
 
 const initialState = {
     rut:"",
