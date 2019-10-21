@@ -45,7 +45,7 @@ export default class FormRegistro extends Component {
       }
     };
   }
-
+//Validaciones de campos al ingreso de datos del usuario
   handleChange = ({target}) => {
     const {name, value} = target
     this.setState({[name]: value})
@@ -110,7 +110,7 @@ export default class FormRegistro extends Component {
 
   render(){
     const { formErrors } = this.state;
-    
+//divs que contienen los componentes y estilos de los formularios  
 return(
   <div className="bg">
       <center>

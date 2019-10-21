@@ -3,7 +3,7 @@ import {  MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbrea
 import axios from 'axios'
 import Registro from './Registro'
 import { Route, Link}  from 'react-router-dom'
-
+//estado inicial de los campos vacios 
 const initialState = {
     rut:"",
     password:"",
@@ -14,7 +14,7 @@ const initialState = {
 
 export default class FormLogin extends Component {
 
-  state = initialState; 
+  state = initialState; //variable con el estado inicial
 
   handleSubmit = event =>{
 
@@ -76,7 +76,7 @@ export default class FormLogin extends Component {
     }
     return true;
   };
-
+// renderiza todos los componentes creados entre los cuales se encuetran los formularios,boton y textos
   render(){
     
     return(
@@ -97,6 +97,8 @@ export default class FormLogin extends Component {
                     {this.state.msgError}
                   </div>
                   <MDBInput
+                  // Input el cual esta asocidado al ingreso de datos del rut 
+
                     label='Rut'
                     group
                     type='text'
@@ -104,12 +106,16 @@ export default class FormLogin extends Component {
                     labelClass='white-text'
                     name="rut"
                     onChange={this.handleChange}
+                    className='white-text mb-5 mt-4 font-weight-bold'
+
                   />
                   <div style={{ color:"red"}}>
                     {this.state.rutError}
                   </div>
 
                   <MDBInput
+                  // Input el cual esta asocidado al ingreso de datos de la contraseña 
+
                     label='Contraseña'
                     group
                     type='password'
@@ -117,6 +123,8 @@ export default class FormLogin extends Component {
                     labelClass='white-text'
                     name="password"
                     onChange={this.handleChange}
+                    className='white-text mb-5 mt-4 font-weight-bold'
+
                   />
                   <div style={{ color:"red"}}>
                     {this.state.passwordError}
@@ -138,6 +146,7 @@ export default class FormLogin extends Component {
                     <p className='font-small white-text d-flex justify-content-end'>
                       No tienes una cuenta?
                       <Link to="/CrearUsuario" className='green-text ml-1 font-weight-bold'>Registrate</Link>
+                      {/* texto el cual al ser presionado redirecciona a la pagina de registro*/}
                       <Route path="/CrearUsuario" component={Registro}></Route>
 
                     </p>
