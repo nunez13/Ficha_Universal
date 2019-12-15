@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {MDBRow, MDBCol,MDBCard, MDBCardBody,MDBBtn,MDBCardTitle,MDBIcon,MDBInput} from "mdbreact";
-import { Input } from '@material-ui/core';
 
 export default class FichaMedica extends Component {
     state = {

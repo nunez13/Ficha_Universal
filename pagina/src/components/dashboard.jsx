@@ -5,6 +5,7 @@ import Login from './Login'
 import Arqueotipo from './Arqueotipo';
 import FichaMedica from './FichaMedica'
 import DetallesFicha from './DetallesFicha';
+import FormDetallesFicha from './FormDetallesFicha'
 
 export default class Dashboard extends Component {
   constructor(props){
@@ -53,7 +54,7 @@ componentDidUpdate(){
             <MDBRow >           
               <FichaMedica/>
 
-              <DetallesFicha/>
+              <FormDetallesFicha/>
 
               <MDBCol md="3">
                 <MDBCard className="cardd">

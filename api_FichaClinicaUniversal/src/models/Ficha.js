@@ -6,30 +6,25 @@ const Schema    = mongoose.Schema
 // definir propiedades y campos del modelo Ficha Medica
 const fichaSchema = Schema({
     identificationNumber: {
-        type: Number,
-        //required: true,
-        unique: true,
-        default: 197955384
+        type: String,
+        
+        unique: true
     },
     date: {
         type: Date,
-        default: Date.now
+        default: new Date
     },
     name: {
         type: String,
-        default: 'Diego'
-        //required: true
+        required: true
     },
     lastName: {
         type: String,
-        default: 'Pincheira'
-
-        //required: true
+        required: true
     },
     email: {
         type: String,
-        //required: true
-        default: 'diego@hotmail.com',
+        required: true,
         unique: true,
         lowercase: true,
         validate: value => {
@@ -41,74 +36,60 @@ const fichaSchema = Schema({
       userDetails: {
           address: {
               type: String,
-              default: 'Calle Falsa 123'
-              //required: true
+              required: true
           },
           birthData: {
               // cambiar a tipo Date
               type: String,
-              default: '11/05/1998'
 
               //required: true
           },
           gender: {
               type: String,
-              default: 'Masculino'
-
-              //required: true
+              required: true
           },
           deathData: {
               // cambiar a tipo Date
               type: String,
-              default: 'N/A'
-              //required: true
+              required: false
               
           },
           bloodType: {
               type: String,
-              default: 'no se xD'
-              //required: true
+              required: true
               
           },
           heigth: {
               type: Number,
-              default: 88
-              //required: true 
+              required: true 
           },
           weigth: {
               type: Number,
-              default: 168
-              //required: true
+              required: true
           },
           legalRepresentative: {
               type: String,
-              default: 'mi padre'
-              //required: true
+              required: true
           },
           occupation: {
               type: String,
-              default: 'Ruby on Rails Developer'
-              //required: true
+              required: true
           },
           allergies: {
-              type: Array,
-              default: ['Polen', 'Polvo']
+              type: Array
 
           },
           maritalStatus: {
               type: String,
-              default: 'Soltero'
-              //required: true
+              required: true
           },
           city: {
               type: String,
-              default: 'Victoria'
-              //required: true 
+              required: true 
           },
           region: {
               type: String,
-              default: 'IX Region de la araucania'
-              //required: true
+              required: true
           }
 
       },
@@ -116,45 +97,15 @@ const fichaSchema = Schema({
       healtService: {
           healtInsurance: {
               type: String,
-              default: 'Sin Seguro'
-              //required: true 
+              required: true 
           },
           healthCareAgreement: {
               type: String,
-              default: 'F'
-              //required: true
-          },
-          medicalForeCast: {
-              type: String,
-              default: 'Fonasa'
-
-              //required: true
+              required: true
           }
       },
       // Quitar default y luego dejarlo en blanco
-      visits: { type: Array, default: [
-          {
-            _idVisit: 9999999,
-            doctorName: 'Dostor x',
-            date: new Date(),
-            cause: 'Gripe',
-            observations: 'Vino por Gripe ya esta mejor',
-            treatment: {
-                medicines: { type: Array, 
-                    medicine: [
-                        {
-                        nameMedicine: 'Paracetamol',
-                        quantity: '2 cada 8 horas por 7 dias',
-                        dateInit: new Date(),
-                        dateExpiry: '++/**/----',
-
-                        }
-                    ]
-                }
-            }
-        }]
-
-      }
+      visits: { type: Array }
 })
 
 fichaSchema.statics.findFichaByIdentificationNumber = async (identificationNumber) => {
@@ -167,7 +118,7 @@ fichaSchema.statics.findFichaByIdentificationNumber = async (identificationNumbe
 
 
 fichaSchema.statics.updateFicha = async (identificationNumber, newValues) => {
-    const ficha =  await Ficha.findOneAndUpdate({identificationNumber},{$set: newValues})
+    const ficha =  await Ficha.findOneAndUpdate({identificationNumber},{$set: newValues},{new: true})
     await ficha.save()
     return ficha
 

@@ -16,6 +16,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.3.2",
     "mongoose": "^5.6.12",
+    "qrcode": "^1.4.4",
+    "speakeasy": "^2.0.0",
     "validator": "^11.1.0"
   },
   "devDependencies": {

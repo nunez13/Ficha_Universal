@@ -7,13 +7,13 @@ const router = express.Router()
 let corsOptions = {origin: 'http://localhost:3000'}
 router.options('/', cors(corsOptions))
 
-router.post('/new_ficha', cors(corsOptions), auth, async (req, res, next) => {
+router.post('/new_ficha', async (req, res, next) => {
     // intenta crear una nueva instacia de ficha
     try{
-        const ficha = new Ficha()
+        const ficha = new Ficha(req.body)
         await ficha.save()
         res.send({ficha})
-        console.log(ficha.visits)
+        console.log(ficha)
     }catch(err){
         console.log(err)
         res.status(404).send({message: 'the request failed. try again'})
@@ -21,10 +21,11 @@ router.post('/new_ficha', cors(corsOptions), auth, async (req, res, next) => {
 
 })
 // para probar estos metodos quitar los middlewares "auth".
-router.get('/ficha', cors(corsOptions), auth, async (req, res, next) => {
+router.post('/ficha', async (req, res, next) => {
     // intenta traer una ficha medica previamente instanciada
     try{
-        const {identificationNumber} = req.body
+        const { identificationNumber } = req.body
+        console.log(identificationNumber)
         const ficha = await Ficha.findFichaByIdentificationNumber(identificationNumber)
         if(!ficha){
             res.status(404).send({error: 'Ficha not found'})
@@ -37,12 +38,13 @@ router.get('/ficha', cors(corsOptions), auth, async (req, res, next) => {
     }
 })
 
-router.patch('/update_ficha', cors(corsOptions), auth, async (req, res, next) =>{
+router.patch('/update_ficha', async (req, res, next) =>{
     // actualiza un recurso en especifico
     // enviar todos los campos, o habra perdida de informacion respecto al schema
     try{
-        const {identificationNumber,newValues} = req.body
-        const ficha = await Ficha.updateFicha(identificationNumber, newValues)
+        const { identificationNumber, newValues } = req.body
+        console.log(identificationNumber, newValues.ficha)
+        const ficha = await Ficha.updateFicha(identificationNumber, newValues.ficha)
         if(!ficha){
             res.status(404).send({error: ' The record was not update. try again'})
         }

@@ -54,6 +54,12 @@ const userSchema = Schema({
       type: String,
       required: true
     }
+  }],
+  tokens2fa: [{
+    base32: {
+      type: String,
+      required: false
+    }
   }]
 
 })
@@ -75,6 +81,15 @@ userSchema.methods.generateAuthToken = async function() { // creacion metodo de 
   await user.save()
   return token
 }
+
+// userSchema.methods.generateAuthToken2fa = async function() {
+//   const user = this
+//   const secretkey = speakeasy.generateSecret({length: 20})
+//   secretkey.base32
+//   user.tokens2fa = user.tokens2fa.concat(secretkey)
+//   await user.save()
+//   return secretkey.base32
+// }
 
 userSchema.statics.findByCredentials = async (rut, password) => { // define un metodo de clase userSchema
   // Busca un usuario por email y password
